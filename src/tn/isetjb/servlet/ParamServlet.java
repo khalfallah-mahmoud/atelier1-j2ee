@@ -4,18 +4,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BonjourServlet extends HttpServlet{
- private int c=0;
+@WebServlet("/param") 
+public class ParamServlet extends HttpServlet{
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html");
-        resp.setCharacterEncoding("UTF-8");
-        
-        c++;
+		// TODO Auto-generated method stub
+		
+		String prenom=req.getParameter("prenom");
+		String age=req.getParameter("age");
         PrintWriter out = resp.getWriter();
         out.println("<!DOCTYPE html>");
         out.println("<html>");
@@ -25,9 +27,11 @@ public class BonjourServlet extends HttpServlet{
         out.println("</head>");
         out.println("<body>");
         out.println("<p>Bonjour Iset Djerba!</p>");
-        out.println("<p>Cette Servlet a été accédée " + c + " fois</p>");
+      
         out.println("</body>");
         out.println("</html>");
+
+		out.println("<b>Vous etes :: </b><b>"+prenom+" et votre age est :  "+age+" </b>");
 	}
 
 	@Override
@@ -36,5 +40,4 @@ public class BonjourServlet extends HttpServlet{
 		super.doPost(req, resp);
 	}
 
-	
 }
